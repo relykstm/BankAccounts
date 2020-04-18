@@ -1,0 +1,41 @@
+@using BankAccounts.Models
+@model IndexWrapper
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Account Page</title>
+</head>
+<body>
+    <a href = "logout">Logout</a>
+    <br/>
+    <br/>
+    <h1>Welcome @ViewBag.FirstName @ViewBag.LastName:</h1>
+    <hr>
+    <h3>Your Current Balance: $@ViewBag.Balance</h3>
+    <hr>
+    <partial name="TransactionForm" model="@Model.Transaction"/>
+    <hr>
+    <h4>Account History:</h4>
+    <br/>
+    <table>
+        <thead>
+            <th>Amount</th>
+            <th>Date</th>
+        </thead>
+            @foreach(var transaction in @Model.Transactions)
+            {
+                <tr>
+                    <td>$
+                        @{
+                            var amount = transaction.Amount.ToString ("###,###,###,##0.00");
+                            @Html.DisplayTextFor(model =>amount);
+                        }
+                    </td>
+                    <td>@transaction.CreatedAt</td>
+                </tr>
+            }
+    </table>
+</body>
+</html>

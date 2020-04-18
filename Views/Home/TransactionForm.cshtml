@@ -1,0 +1,11 @@
+@model BankAccounts.Models.Transaction
+<form asp-controller="Home" asp-action="NewTransaction" method="POST">
+    <h2>Make a Deposit or Withdrawl:</h2>
+    <br/>
+    <span asp-validation-for="Amount"></span>
+    <label asp-for="Amount"></label>
+    <input type="text" asp-for="Amount"/>
+    <br/>
+    <br/>
+    <input type="submit" value= "Submit">
+</form>
